@@ -36,7 +36,17 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    proxy: {
+      // 代理到后端
+      [process.env.VUE_APP_BASE_API]: {
+        target: `http://localhost:8080/` + process.env.VUE_APP_BASE_API,
+        changeOrigin: true,
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_BASE_API]: ''
+        }
+      }
+    }
+    // before: require('./mock/mock-server.js') 模拟数据屏蔽
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

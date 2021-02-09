@@ -47,12 +47,15 @@ const mutations = {
 }
 
 const actions = {
+  // 获取菜单权限的地方外面的permission.js会调用到这儿
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
       let accessedRoutes
       if (roles.includes('admin')) {
+        // 如果是admin就是全部权限
         accessedRoutes = asyncRoutes || []
       } else {
+        // 否则递归查找权限
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
       }
       commit('SET_ROUTES', accessedRoutes)
