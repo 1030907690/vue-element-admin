@@ -65,7 +65,7 @@ export default {
   },
   data() {
     return {
-      webSocket: null,
+      // webSocket: null,
       message: 'test'
     }
   },
@@ -84,9 +84,9 @@ export default {
       // 参数
       const agentData = 'mymessage'
       // 若是ws开启状态
-      if (this.webSocket.readyState === this.webSocket.OPEN) {
+      if (this.$webSocket.readyState === this.$webSocket.OPEN) {
         this.websocketsend(agentData)
-      } else if (this.webSocket.readyState === this.webSocket.CONNECTING) {
+      } else if (this.$webSocket.readyState === this.$webSocket.CONNECTING) {
         const that = this// 保存当前对象this
         setTimeout(function() {
           that.websocketsend(agentData)
@@ -101,15 +101,15 @@ export default {
     },
     initWebSocket() { // 初始化weosocket
       // ws地址
-      const wsuri = 'ws://127.0.0.1:8092/ws?userId=1'
-      this.webSocket = new WebSocket(wsuri)
-      this.webSocket.onmessage = this.webSocketOnMessage
-      this.webSocket.onclose = this.webSocketClose
+    /* const wsuri = 'ws://127.0.0.1:8092/ws?userId=1'
+      this.$webSocket = new WebSocket(wsuri)*/
+      this.$webSocket.onmessage = this.webSocketOnMessage
+      this.$webSocket.onclose = this.webSocketClose
     },
     webSocketOnMessage(e) { // 数据接收
       console.log(e.data)
       // this.message = e.data
-      this.$message('webSocket消息' + e.data)
+      this.$message(e.data)
       // const redata = JSON.parse(e.data)
       // console.log(redata.value)
     },

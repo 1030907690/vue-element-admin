@@ -42,8 +42,10 @@ Vue.use(Element, {
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
-
+const wsuri = 'ws://127.0.0.1:8092/ws?userId=1'
+var webSocket = new WebSocket(wsuri)
 Vue.config.productionTip = false
+Vue.prototype.$webSocket = webSocket
 
 new Vue({
   el: '#app',
