@@ -126,6 +126,8 @@ export default {
   },
   created() {
     // window.addEventListener('storage', this.afterQRScan)
+    console.log('api前缀 ' + process.env.VUE_APP_BASE_API)
+    console.log('ws前缀 ' + process.env.VUE_APP_BASE_WS_API)
   },
   mounted() {
     if (this.loginForm.username === '') {
